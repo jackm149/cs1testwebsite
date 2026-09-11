@@ -7,7 +7,7 @@ set_site_information(
     description="This is my description",
     sources="Drafter docs for the most part",
     planning="idonthaveaplanningdocforthiswebsite.pdf",
-    links=["https://github.com/your-username/your-repository"]
+    links=["https://github.com/jackm149/cs1testwebsite/"]
 )
 hide_debug_information()
 set_website_framed(False)
