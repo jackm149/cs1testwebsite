@@ -6,7 +6,7 @@ set_site_information(
     author="Jack Mallett",
     description="This is my description",
     sources="Drafter docs for the most part",
-    planning="idonthaveaplanningdocforthiswebsite.pdf",
+    planning="",
     links=["https://github.com/jackm149/cs1testwebsite/"]
 )
 hide_debug_information()
