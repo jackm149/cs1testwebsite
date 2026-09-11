@@ -1,23 +1,51 @@
-from bakery import assert_equal
 from drafter import *
 from dataclasses import dataclass
 
-
-
+set_website_title("Jack's Test Website 09112026")
+set_site_information(
+    author="Jack Mallett",
+    description="This is my description",
+    sources="Drafter docs for the most part",
+    planning="idonthaveaplanningdocforthiswebsite.pdf",
+    links=["https://github.com/your-username/your-repository"]
+)
 hide_debug_information()
-set_website_title("Your Drafter Website")
 set_website_framed(False)
-
 
 @dataclass
 class State:
-    pass
-
+    count: int
 
 @route
 def index(state: State) -> Page:
-    return Page(state, ["Hello World!"])
+    return Page(state, [
+        "Current count: " + str(state.count) + "\n",
+        Button("-1", "decrement"),
+        Button("+1", "increment"),
+        Button("+2", "increment2"),
+        Button("Reset", "reset_count")
+    ])
 
-assert_equal(index(State()), Page(State(), ["Hello World!"]))
+@route
+def decrement(state: State) -> Page:
+    if state.count >= 1:
+        state.count = state.count - 1
+    return index(state)
 
-start_server(State())
+@route
+def increment(state: State) -> Page:
+    state.count = state.count + 1
+    return index(state)
+
+@route
+def increment2(state: State) -> Page:
+    state.count = state.count + 2
+    return index(state)
+
+
+@route
+def reset_count(state: State) -> Page:
+    state.count = 0
+    return index(state)
+
+start_server(State(4))
